@@ -5,9 +5,35 @@ class oficina(models.Model):
     province = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
+    def __unicode__(self):
+    	return name
     class Meta:
         verbose_name = "oficina"
         verbose_name_plural = "oficina"
 
-class Nombre(models.Model):
-	nombre = models.CharField(max_length=10)
+class Autor(models.Model):
+	id_autor = models.AutoField(primary_key=True)
+	nombre_comp_autor = models.CharField(max_length=100)
+	#publicaciones = models.ManyToManyField(Publicacion)
+	class Meta:
+		verbose_name = "Autor"
+		verbose_name_plural = "Autor"
+
+class Publicacion(models.Model):
+	id_publicacion = models.AutoField(primary_key=True)
+	anio_publicacion = models.IntegerField()
+	titulo_publicacion = models.CharField(max_length=100)
+	cabecera_publicacion = models.CharField(max_length=300)
+	autores = models.ManyToManyField(Autor)
+	class Meta:
+		verbose_name = "Publicacion"
+		verbose_name_plural = "Publicacion"
+
+class Link_archivo(models.Model):
+	id_link = models.AutoField(primary_key=True)
+	url_link = models.CharField(max_length=200)
+	titulo_link = models.CharField(max_length=100)
+	fecha_link = models.DateTimeField(auto_now=True)
+	class Meta:
+		verbose_name = "Link_archivo"
+		verbose_name_plural = "Link_archivo"

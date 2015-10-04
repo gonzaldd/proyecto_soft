@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'scrapy_crawler.spiders'
 import os
 import sys
 
-sys.path.append('/home/gonza/Desktop/Proyecto/Webbot') #CAMBIAR!!!
+sys.path.append('/home/gonza/Desktop/proyecto_soft/Webbot') #CAMBIAR!!!
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Webbot.settings'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
