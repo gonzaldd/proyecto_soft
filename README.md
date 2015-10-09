@@ -7,8 +7,8 @@ TODO
 #API Reference
 TODO
 #Instalacion
--[X] El desarrollo se realizo en Ubuntu 14
--[X] Instalar Python 2.7
+- El desarrollo se realizo en Ubuntu 14
+- Instalar Python 2.7
 -[X] Instalar PIP
 -[X] Instalar Scrapy 1.0
 -[X] Instalar Django 1.8.4
