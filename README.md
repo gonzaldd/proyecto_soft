@@ -1,11 +1,15 @@
 # Proyecto de Software 2015
+
 ##Introduccion
 Este proyecto consiste en desarrollar un crawler de datos bibliometricos, usando como lenguaje Python, el framework Django y 
 y Scrapy para las busquedas en la web.
+
 ##Motivacion
 TODO
+
 ##API Reference
 TODO
+
 ##Instalacion
 - El desarrollo se realizo en Ubuntu 14
 - Instalar Python 2.7
@@ -24,6 +28,7 @@ TODO
 - Una vez instalado Sorl, bajar este conector:
 *http://cdn.mysql.com/archives/mysql-connector-java-5.1/mysql-connector-java-5.1.32.tar.gz
 - meterlo en /opt/solr-5.2.1/contrib/dataimporthandler (ruta por default, puede variar)
+
 ##Licencia
 MIT
 
