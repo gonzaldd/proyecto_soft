@@ -16,7 +16,8 @@ NEWSPIDER_MODULE = 'scrapy_crawler.spiders'
 import os
 import sys
 
-sys.path.append('/home/gonza/Desktop/proyecto_soft/Webbot') #CAMBIAR!!!
+carpeta = (os.path.split(os.path.dirname(os.path.dirname(__file__))))
+sys.path.append( carpeta[0] + '/Webbot')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Webbot.settings'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -66,7 +67,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'Webbot.settings'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'scrapy_crawler.pipelines.ScrapRapiPagoPipeline': 300,
+    'scrapy_crawler.MysqlDAO.ScrapAutores': 1000,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

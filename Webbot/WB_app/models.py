@@ -1,19 +1,20 @@
 from django.db import models
 
 class oficina(models.Model):
-    city = models.CharField(max_length=100)
-    province = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    name = models.CharField(max_length=100)
-    def __unicode__(self):
-    	return name
-    class Meta:
-        verbose_name = "oficina"
-        verbose_name_plural = "oficina"
+	#id_lugar = models.AutoField(primary_key=False)
+	city = models.CharField(max_length=100)
+	province = models.CharField(max_length=100)
+	address = models.CharField(max_length=100)
+	name = models.CharField(max_length=100)
+	def __unicode__(self):
+		return name
+	class Meta:
+		verbose_name = "oficina"
+		verbose_name_plural = "oficina"
 
 class Autor(models.Model):
 	id_autor = models.AutoField(primary_key=True)
-	nombre_comp_autor = models.CharField(max_length=100)
+	nombre_comp_autor = models.CharField(max_length=500)
 	#publicaciones = models.ManyToManyField(Publicacion)
 	class Meta:
 		verbose_name = "Autor"
@@ -21,9 +22,10 @@ class Autor(models.Model):
 
 class Publicacion(models.Model):
 	id_publicacion = models.AutoField(primary_key=True)
-	anio_publicacion = models.IntegerField()
+	anio_publicacion = models.IntegerField(null=True)
 	titulo_publicacion = models.CharField(max_length=100)
 	cabecera_publicacion = models.CharField(max_length=300)
+	isbn = models.CharField(max_length=30)
 	autores = models.ManyToManyField(Autor)
 	class Meta:
 		verbose_name = "Publicacion"

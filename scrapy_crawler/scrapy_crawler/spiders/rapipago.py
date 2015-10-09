@@ -1,7 +1,7 @@
 import scrapy
 from scrapy_crawler.items import OfficeItem
 
-class RapiPagoSpider(scrapy.Spider):
+'''class RapiPagoSpider(scrapy.Spider):
     name = "rapipago"
     allowed_domains = ["rapipago.com.ar"]
     start_urls = [
@@ -21,7 +21,7 @@ class RapiPagoSpider(scrapy.Spider):
                 yield request
 
     def parse_province(self, response):
-        for idx, city in enumerate(response.xpath("//*[@id='ciudadSuc']/option")):
+        for idx, city in enumerate(response.xpath("//*[@id='ciudadSuc']/option")):ode
             if idx > 0: 
                 code = city.xpath('@value').extract()[0]
 
@@ -58,4 +58,4 @@ class RapiPagoSpider(scrapy.Spider):
             officeItem['city'] = response.meta['city']
             officeItem['name'] = office.xpath("../*[@class='resultadosTextWhite']/text()").extract()[0]
             officeItem['address'] = office.xpath("../..//*[@class='resultadosText']/text()").extract()[0]
-            yield officeItem
+            yield officeItem'''
