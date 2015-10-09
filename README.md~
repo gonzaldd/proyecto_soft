@@ -15,6 +15,5 @@ Proyecto Webbot
 +Instalar el conector Java (Para Solr)
 	>>sudo apt-get install libmysql-java
 +Instalar Sorl
-+Una vez instalado Sorl, bajar este conector http://cdn.mysql.com/archives/mysql-connector-java-5.1/mysql-connector-java-5.1.32.tar.gz y meterlo en /opt/solr-5.2.1/contrib/dataimporthandler (ruta por default, puede variar)
 
 
