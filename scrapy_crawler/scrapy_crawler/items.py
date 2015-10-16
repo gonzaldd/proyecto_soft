@@ -7,8 +7,10 @@ from WB_app.models import Autor,Publicacion,oficina
 class OfficeItem(DjangoItem):
     django_model = oficina
 
-class Publicacion(DjangoItem):
+class PublicacionItem(DjangoItem):
 	django_model = Publicacion
+	nombre_autor = scrapy.Field()
+	links = scrapy.Field()
 
 class AutorItem(DjangoItem):
 	django_model = Autor

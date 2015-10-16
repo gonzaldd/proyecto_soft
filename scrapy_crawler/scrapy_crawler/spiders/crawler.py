@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.spiders import CrawlSpider, Rule
-from scrapy_crawler.items import AutorItem, Publicacion
+from scrapy_crawler.items import AutorItem, PublicacionItem
 from scrapy.linkextractors import LinkExtractor
 
 class crawler(scrapy.Spider):
@@ -17,18 +17,22 @@ class crawler(scrapy.Spider):
 			print href
 			url = response.urljoin(href.extract())
 			yield scrapy.Request(url, callback=self.parse_web1)
-#		'''for sel in response.xpath("//td/p/span[@style='font-style: italic; font-size: 11px' or @style='font-size: 11px; font-style: italic']"):
-#			autor = AutorItem()
-#			nombre = sel.xpath("text()[normalize-space()]").extract()
-#			autor['nombre_comp_autor'] = nombre[0].strip('\t\r\n')
-#			yield autor
-#		return'''
 
 	def parse_web1(self, response):
-		for sel in response.xpath("//ul[@class='d3s-revista']/li"):
-			tipo = sel.xpath("p[@class='d3s-titulo-seccion']/text()[normalize-space()]").extract()
-			if "Scientific Letters" in tipo[0]:
-				print tipo[0].strip()
-				autor = AutorItem()
-				autor['nombre_comp_autor'] = nombre = sel.xpath("//ul/li/p[@class='d3s-titulo-autores']/text()").extract()[0].strip()
-				return autor
+		i=0
+		for sel in response.xpath("//ul[@class='d3s-revista']"):
+			publicaciones = sel.xpath("//li[contains(p, 'Scientific Letters')]/p[@class='d3s-titulo-post']/text()").extract()
+			autores = sel.xpath("//li[contains(p, 'Scientific Letters')]/p[@class='d3s-titulo-autores']/text()").extract()
+			if i == 0:
+				o=0
+				while o != len(publicaciones):
+					for h in sel.xpath("//a[contains(@href,'.pdf')]/@href"):
+						print h.extract()
+					publicacion = PublicacionItem()
+					publicacion['titulo_publicacion'] = publicaciones[o]
+					publicacion['anio_publicacion'] = response.xpath("//p[@class='d3s-titulo-numero']/text()").re(r'\d\d\d\d')[0].strip()
+					publicacion['isbn'] = response.xpath("//div[@id='d3s-page-content']/div/div/div/text()").re(r'\d\d\d\d-\d\d\d\d')[0].strip()
+					publicacion['nombre_autor'] = autores[o]
+					yield publicacion
+					o+=1
+				i+=1
