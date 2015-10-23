@@ -10,7 +10,7 @@ class OfficeItem(DjangoItem):
 class PublicacionItem(DjangoItem):
 	django_model = Publicacion
 	nombre_autor = scrapy.Field()
-	links = scrapy.Field()
+	url_link = scrapy.Field()
 
 class AutorItem(DjangoItem):
 	django_model = Autor

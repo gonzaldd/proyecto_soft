@@ -12,6 +12,11 @@ class ScrapAutores(object):
 			try:
 				p = Publicacion.objects.get(titulo_publicacion= item['titulo_publicacion'])
 				p.autores.add(autor)
+				l = Link_archivo(url_link=item['url_link'],
+					titulo_link = item['titulo_publicacion'],
+					publicacion = p
+					)
+				l.save()
 			except:
 				p = Publicacion(titulo_publicacion= item['titulo_publicacion'],
 					anio_publicacion= item['anio_publicacion'],
@@ -19,13 +24,23 @@ class ScrapAutores(object):
 					)
 				p.save()
 				p.autores.add(autor)
+				l = Link_archivo(url_link=item['url_link'],
+					titulo_link = item['titulo_publicacion'],
+					publicacion = p
+					)
+				l.save()
 		except:
 			print("No Existe el autor, sera guardado.")
 			autor = Autor(nombre_comp_autor = item['nombre_autor'])
 			autor.save()
 			try:
 				p = Publicacion.objects.get(titulo_publicacion= item['titulo_publicacion'])
-				p.autores.add(autor)	
+				p.autores.add(autor)
+				l = Link_archivo(url_link=item['url_link'],
+					titulo_link = item['titulo_publicacion'],
+					publicacion = p
+					)
+				l.save()
 			except:
 				p = Publicacion(titulo_publicacion= item['titulo_publicacion'],
 					anio_publicacion= item['anio_publicacion'],
@@ -33,4 +48,9 @@ class ScrapAutores(object):
 					)
 				p.save()
 				p.autores.add(autor)
+				l = Link_archivo(url_link=item['url_link'],
+					titulo_link = item['titulo_publicacion'],
+					publicacion = p
+					)
+				l.save()
 		return item
