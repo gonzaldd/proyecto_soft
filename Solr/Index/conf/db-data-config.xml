@@ -1,0 +1,27 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+            driver="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/WB_app"  
+            user="root"
+            password="root" /> 
+  <document name="doc">
+  <entity name="WB_app_publicacion" query="select *from WB_app_publicacion">
+            <field column="id" name="id_publicacion" />
+            <field column="AÑO" name="anio_publicacion" />
+            <field column="TITULO" name="titulo_publicacion" />
+            <field column="CABECERA" name="cabecera_publicacion" />
+            <field column="ISBN" name="isbn" />
+          
+            <entity name="WB_app_link_archivo" query="select url_link from WB_app_link_archivo where publicacion_id='${WB_app_publicacion.id_publicacion}'">
+                <field name="WB_app_link_archivo" column="url_link" />
+            </entity>
+            <entity name="WB_app_publicacion_autores" query="select autor_id from WB_app_publicacion_autores where publicacion_id='${WB_app_publicacion.id_publicacion}'">
+                <entity name="WB_app_autor" query="select nombre_comp_autor from WB_app_autor where id_autor = '${WB_app_publicacion_autores.autor_id}'">
+                    <field column="nombre_comp_autor" name="aut" />
+                </entity>
+            </entity>
+    </entity>
+    
+    
+  </document>
+</dataConfig>
