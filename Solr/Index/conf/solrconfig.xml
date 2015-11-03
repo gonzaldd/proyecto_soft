@@ -72,8 +72,7 @@
        The examples below can be used to load some solr-contribs along 
        with their external dependencies.
     -->
-  
-   <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
 
   <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" regex=".*\.jar" />
@@ -86,10 +85,6 @@
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-velocity-\d.*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
   <lib dir="../../lib" />
-
-
-
- 
 
 
   <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">

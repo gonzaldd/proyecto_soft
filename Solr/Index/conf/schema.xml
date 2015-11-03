@@ -109,9 +109,6 @@
      in a compatible way. Any analysis applied to the <uniqueKey> should _not_ produce multiple
      tokens
    -->   
-
-    
-
    
 
    <!-- Dynamic field definitions allow using convention over configuration
@@ -166,7 +163,7 @@
  <!-- Field to use to determine and enforce document uniqueness. 
       Unless this field is marked with required="false", it will be a required field
    -->
-
+ 
 
   <!-- copyField commands copy one field to another at the time a document
         is added to the index.  It's used either to index the same field differently,
@@ -533,18 +530,14 @@
                              refreshInterval: Number of minutes between each rates fetch (default: 1440, min: 60)
    -->
     <fieldType name="currency" class="solr.CurrencyField" precisionStep="8" defaultCurrency="USD" currencyConfig="currency.xml" />
-
     
-  
-  <uniqueKey>id</uniqueKey>
 
-  <field name="id" type="string" indexed="true" stored="true" required="true" />
-  <field name="AÑO"     type="text_general"  indexed="true" stored="false"/>
-  <field name="TITULO"  type="text_general"    indexed="true" stored="true"/>
-  <field name="CABECERA"      type="text_general"  indexed="true" stored="true"/>
-  <field name="ISBN"    type="text_general"     indexed="true" stored="true"/>
-  
+    <uniqueKey>id</uniqueKey>
 
-
-   
+    <field name="id" type="int" indexed="true" stored="true" required="true" multiValued="false" /> 
+    <field name="nombre_comp_autor" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="titulo_publicacion" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="anio_publicacion" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="url_link" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    
 </schema>
