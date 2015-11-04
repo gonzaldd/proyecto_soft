@@ -5,7 +5,7 @@
             user="root"
             password="root" /> 
   <document>
-    <entity name="WB_app_publicacion_autores" query="SELECT u.id_autor as 'id', b.titulo_publicacion, u.nombre_comp_autor,  b.anio_publicacion, l.url_link 
+    <entity name="WB_app_publicacion_autores" query="SELECT u.id_autor as 'id', b.titulo_publicacion as 'Titulo',b.isbn as 'ISBN', u.nombre_comp_autor as 'Autor',  b.anio_publicacion as 'Año', l.url_link as 'URL'
       FROM WB_app_publicacion_autores ub
       JOIN WB_app_autor u on u.id_autor = ub.autor_id
       JOIN WB_app_publicacion b on b.id_publicacion = ub.publicacion_id
