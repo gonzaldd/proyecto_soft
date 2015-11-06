@@ -1,0 +1,62 @@
+<html>
+<head>
+   <title>Webbot</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h3>Busqueda de datos con Solr</h3>
+
+    Query: <input id="query" /> 
+    <button id="search">Buscar</button>
+    <hr/>
+    <div id="results">
+    </div>
+
+
+</body>
+
+
+<script>
+    function on_data(data) {
+        $('#results').empty();
+        var docs = data.response.docs;
+        $.each(docs, function(i, item) {
+            $('#results').prepend($('<div>' + item.id + '</div>'));
+            $('#results').prepend($('<div>' + item.Autor + '</div>'));
+            $('#results').prepend($('<div>' + item.Titulo + '</div>'));
+            $('#results').prepend($('<div>' + item.Año + '</div>'));
+            $('#results').prepend($('<div>' + item.URL + '</div>'));
+            $('#results').prepend($('<div>' + item.ISBN + '</div>'));
+        });
+
+        var total = docs.length + ' resultados';
+        
+    }
+
+    function on_search() {
+        var query = $('#query').val();
+        if (query.length == 0) {
+            return;
+        }
+
+        var url='http://localhost:8983/solr/Index/select?q='+query+'&start=0&rows=1000&indent=on&wt=json&callback=?&json.wrf=on_data';
+        $.getJSON(url);
+    }
+
+    function on_ready() {
+        $('#search').click(on_search);
+        /* Hook enter to search */
+        $('body').keypress(function(e) {
+            if (e.keyCode == '13') {
+                on_search();
+            }
+        });
+    }
+
+    $(document).ready(on_ready);
+</script>
