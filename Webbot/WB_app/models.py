@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.db import models
 
 class oficina(models.Model):
@@ -32,7 +33,7 @@ class Publicacion(models.Model):
 
 class Link_archivo(models.Model):
 	id_link = models.AutoField(primary_key=True)
-	url_link = models.CharField(max_length=200)
+	url_link = models.CharField(max_length=200, unique= True)
 	titulo_link = models.CharField(max_length=200)
 	fecha_link = models.DateTimeField(auto_now=True)
 	publicacion = models.ForeignKey(Publicacion)

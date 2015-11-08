@@ -8,49 +8,54 @@ class ScrapAutores(object):
 
 	def process_item(self, item, spider):
 		try:
-			autor = Autor.objects.get(nombre_comp_autor = item['nombre_autor'])
+			p = Publicacion.objects.get(titulo_publicacion= item['titulo_publicacion'])
 			try:
-				p = Publicacion.objects.get(titulo_publicacion= item['titulo_publicacion'])
-				p.autores.add(autor)
+				l = Link_archivo.objects.get(titulo_link = item['url_link'])
+				print("Ya existe")
+			except Exception as e:
+				print "Exception: ", e
 				l = Link_archivo(url_link=item['url_link'],
 					titulo_link = item['titulo_publicacion'],
 					publicacion = p
-					)
+				)
 				l.save()
-			except:
-				p = Publicacion(titulo_publicacion= item['titulo_publicacion'],
+			for s in item['nombre_autor'].split(','):
+				print(s)
+				try:
+					autor = Autor.objects.get(nombre_comp_autor = s)
+					p.autores.add(autor)
+					print(autor)
+				except Exception as e:
+					print 'EXCEPCION: ',e
+					print("No Existe el autor, sera guardado.")
+					autor = Autor(nombre_comp_autor = s)
+					autor.save()
+					p.autores.add(autor)
+
+		except Exception as e:
+			print "Exception: " ,e
+			p = Publicacion(titulo_publicacion= item['titulo_publicacion'],
 					anio_publicacion= item['anio_publicacion'],
 					isbn = item['isbn']
 					)
-				p.save()
-				p.autores.add(autor)
-				l = Link_archivo(url_link=item['url_link'],
-					titulo_link = item['titulo_publicacion'],
-					publicacion = p
-					)
-				l.save()
-		except:
-			print("No Existe el autor, sera guardado.")
-			autor = Autor(nombre_comp_autor = item['nombre_autor'])
-			autor.save()
+			p.save()
 			try:
-				p = Publicacion.objects.get(titulo_publicacion= item['titulo_publicacion'])
-				p.autores.add(autor)
+				l = Link_archivo.objects.get(titulo_link = item['url_link'])
+				print("Ya existe")
+			except Exception as e:
+				print "Exception: ", e
 				l = Link_archivo(url_link=item['url_link'],
 					titulo_link = item['titulo_publicacion'],
 					publicacion = p
-					)
+				)
 				l.save()
-			except:
-				p = Publicacion(titulo_publicacion= item['titulo_publicacion'],
-					anio_publicacion= item['anio_publicacion'],
-					isbn = item['isbn']
-					)
-				p.save()
-				p.autores.add(autor)
-				l = Link_archivo(url_link=item['url_link'],
-					titulo_link = item['titulo_publicacion'],
-					publicacion = p
-					)
-				l.save()
-		return item
+			for s in item['nombre_autor'].split(','):
+				print(s)
+				try:
+					autor = Autor.objects.get(nombre_comp_autor = s)
+					p.autores.add(autor)
+				except Exception as e:
+					print 'Exception: ',e
+					autor = Autor(nombre_comp_autor = s)
+					autor.save()
+					p.autores.add(autor)
