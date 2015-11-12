@@ -20,7 +20,7 @@ from WB_app.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^get/id=(?P<id_solicitud>\d)/$', get_id, name='GET_byID'),
+    url(r'^get/id=(?P<id_solicitud>\w{0,90})/$', get_id, name='GET_byID'),
     url(r'^get/list/', get_list, name='GET_all'),
      url(r'^get/autor=(?P<nombre>\w{0,90})/$', get_autor, name='GET_byID'),
 ]
