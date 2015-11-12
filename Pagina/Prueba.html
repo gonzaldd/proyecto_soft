@@ -1,40 +1,65 @@
 <html>
 <head>
-   <title>Webbot</title>
+  <title>Busqueda de datos</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <h3>Busqueda de datos con Solr</h3>
+<style>
+.jumbotron { 
+    background-color: #f4511e; /* Orange */
+    color: #ffffff;
+}
 
-    Query: <input id="query" /> 
-    <button id="search">Buscar</button>
-    <hr/>
-    <div id="results">
+.container {
+    background-color: #F0F5F5;
+    padding: 80px 120px;
+}
+</style>
+
+
+	<body>
+	<div class="jumbotron text-center">
+  	<h1><em>Webbot de datos Bibliometricos</em></h1> 
+	<label for="query">Query:</label>
+    <input type="text" class="form-control" id="query" value="Ingrese la búsqueda..." onfocus="clearField(this);">
+    <button id="search" type="button" class="btn btn-primary">Buscar!</button>
+
+	</div>
+
+    <div class="container text-center" id="results">
+
     </div>
+
 
 
 </body>
 
 
 <script>
+
+    function clearField(input) {
+        input.value = "";
+    };
+
     function on_data(data) {
         $('#results').empty();
         var docs = data.response.docs;
+        var total = docs.length + ' resultados';
+        $('#results').append($('<p><em>' + "Se encontraron: " + total +'</em></p>'));
         $.each(docs, function(i, item) {
-            $('#results').prepend($('<div>' + item.id + '</div>'));
-            $('#results').prepend($('<div>' + item.Autor + '</div>'));
-            $('#results').prepend($('<div>' + item.Titulo + '</div>'));
-            $('#results').prepend($('<div>' + item.Año + '</div>'));
-            $('#results').prepend($('<div>' + item.URL + '</div>'));
-            $('#results').prepend($('<div>' + item.ISBN + '</div>'));
+            $('#results').append($('<div>' + "ID: " + item.id +'</div>'));
+            $('#results').append($('<div>' + "Autor: " + item.Autor + '</div>'));
+            $('#results').append($('<div>' + "Titulo: " + item.Titulo + '</div>'));
+            $('#results').append($('<div>' + "Año: "+ item.Año + '</div>'));
+            $('#results').append($('<div>' + "URL: "+ item.URL + '</div>'));
+            $('#results').append($('<p>' + "ISBN: "+item.ISBN + '</p>'));
         });
 
-        var total = docs.length + ' resultados';
+        
         
     }
 

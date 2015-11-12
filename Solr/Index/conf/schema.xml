@@ -535,10 +535,10 @@
     <uniqueKey>id</uniqueKey>
 
     <field name="id" type="int" indexed="true" stored="true" required="true" multiValued="false" /> 
-    <field name="Autor" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
     <field name="Titulo" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
     <field name="Año" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
     <field name="ISBN" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
     <field name="URL" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="Autor" type="text_general" indexed="true" stored="true" required="true" multiValued="true" />
     
 </schema>
