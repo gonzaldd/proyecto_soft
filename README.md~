@@ -8,14 +8,9 @@ y Scrapy para las busquedas en la web.
 TODO
 
 ##API Reference
-Las peticiones se realizan a traves del metodo get (Sustituir "Dominio" por la url del servidor),
-las respuestas son en formato json.
-- Dominio/get/list
-	descripcion (TODO)
-- Dominio/get/id=#número entero
-TODO
+TODO!
 
-##Instalación
+##Instalacion
 - El desarrollo se realizo en Ubuntu 14
 - Instalar Python 2.7
 - Instalar PIP

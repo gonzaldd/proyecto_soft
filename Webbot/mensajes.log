@@ -33,3 +33,6 @@ number of matches= 1
 234
 number of matches= 1
 [pid: 5174|app: 0|req: 4/4] 10.0.2.2 () {38 vars in 642 bytes} [Thu Feb 25 01:11:51 2016] GET /get/id%3D234/ => generated 387 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+234
+number of matches= 1
+[pid: 5174|app: 0|req: 5/5] 10.0.2.2 () {40 vars in 673 bytes} [Thu Feb 25 01:40:04 2016] GET /get/id%3D234/ => generated 387 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
