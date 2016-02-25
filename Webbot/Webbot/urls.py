@@ -22,5 +22,9 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^get/id=(?P<id_solicitud>\w{0,90})/$', get_id, name='GET_byID'),
     url(r'^get/list/', get_list, name='GET_all'),
-     url(r'^get/autor=(?P<nombre>.+?)/$', get_autor, name='GET_byautor'),
+    url(r'^get/autor=(?P<nombre>.+?)/$', get_autor, name='GET_byautor'),
+    url(r'^get/titulo=(?P<titulo>.+?)/$',get_titulo,name='GET_bytitulo'),
+    url(r'^get/url=(?P<uu>.+?)/$',get_url,name='GET_byurl'),
+    url(r'^get/isbn=(?P<isbn>.+?)/$',get_isbn,name='GET_byisbn'),
+    url(r'^get/anio=(?P<anio>.+?)/$',get_anio,name='GET_byanio')
 ]
