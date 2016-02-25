@@ -7,10 +7,10 @@
   <document>
 
 
-  <entity name="Publicacion" query="select p.id_publicacion as 'id', p.titulo_publicacion as 'Titulo', p.anio_publicacion as 'Año', p.isbn as 'ISBN' from WB_app_publicacion p">
+  <entity name="Publicacion" query="select p.id_publicacion as 'id', p.titulo_publicacion as 'Titulo', p.anio_publicacion as 'Anio', p.isbn as 'ISBN' from WB_app_publicacion p">
       <field column="id_publicacion" name="id"/>
      <field column="titulo_publicacion" name="Titulo"/>
-      <field column="anio_publicacion" name="Año"/>
+      <field column="anio_publicacion" name="Anio"/>
      <field column="isbn" name="ISBN"/>
 
      <entity name="Link" query="select l.url_link as 'URL' from WB_app_link_archivo l where l.publicacion_id = ${Publicacion.id}">

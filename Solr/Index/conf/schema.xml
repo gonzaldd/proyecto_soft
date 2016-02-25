@@ -530,15 +530,27 @@
                              refreshInterval: Number of minutes between each rates fetch (default: 1440, min: 60)
    -->
     <fieldType name="currency" class="solr.CurrencyField" precisionStep="8" defaultCurrency="USD" currencyConfig="currency.xml" />
+
+
+
+    <fieldType name="partial_search" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+        <tokenizer class="solr.NGramTokenizerFactory" minGramSize="1" maxGramSize="10"/>
+    </analyzer>
+    <analyzer type="query">
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+    </analyzer>
+</fieldType>
+
     
 
     <uniqueKey>id</uniqueKey>
 
     <field name="id" type="int" indexed="true" stored="true" required="true" multiValued="false" /> 
-    <field name="Titulo" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="Año" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="ISBN" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="URL" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
-    <field name="Autor" type="text_general" indexed="true" stored="true" required="true" multiValued="true" />
+    <field name="Titulo" type="partial_search" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="Anio" type="partial_search" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="ISBN" type="partial_search" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="URL" type="partial_search" indexed="true" stored="true" required="true" multiValued="false" />
+    <field name="Autor" type="partial_search" indexed="true" stored="true" required="true" multiValued="true" />
     
 </schema>

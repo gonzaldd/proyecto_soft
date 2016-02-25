@@ -1,0 +1,131 @@
+<html>
+<head>
+  <title>Busqueda de datos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+.jumbotron { 
+    background-color: #91162e; /* Orange */
+    color: #ffffff;
+}
+
+.container {
+    background-color: #F0F5F5;
+    padding: 80px 120px;
+}
+
+.buscar{
+	margin-left:300;
+	margin-right:300;
+}
+
+.input-group {
+    text-align:center;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+.footfont{
+    color: #646464;
+}
+.footfont:hover{
+    color: #646464;
+}
+
+.footimg{
+    padding-left: 10px;
+    width: 5%;
+}
+
+
+</style>
+
+
+	<body>
+	   <div class="jumbotron text-center">
+  	     <h1><em>Web Bot de Datos Bibliométricos</em></h1>
+          <img src="img/unla.png" class="img-responsive" alt="Unla" width="150" height="150"> 
+          <br/>
+         <div class="col-md-4 col-md-offset-4" > 
+	       <div class="input-group" buscar>
+            <input type="text" class="form-control" id="query" value="Ingrese la búsqueda..." onfocus="clearField(this);" >
+                <span class="input-group-btn">
+                    <button id="search" type="button" class="btn btn-primary">Buscar!</button>
+                </span>
+            </div>
+         </div>
+	   </div>
+
+    <div class="container text-center" id="results">
+        <h2>Realice una busqueda!</h2>
+    </div>
+
+<footer class="color3">
+    <div class="footer">
+        <div class="col-sm-3 color3">
+            
+        </div>
+        <div class="col-sm-6 color3" align="center">
+             Proyecto de Software. De Domingo Gonzalo, Guastadisegni Federico, Rodriguez Nahuel.
+        </div>
+        <div class="col-sm-4 color3" align="center">
+           
+        </div>
+    </div>
+</footer>
+</body>
+
+
+<script>
+
+    function clearField(input) {
+        input.value = "";
+    };
+
+    function on_data(data) {
+        $('#results').empty();
+        var docs = data.response.docs;
+        var total = docs.length + ' resultados';
+        $('#results').append($('<p><em>' + "Se encontraron: " + total +'</em></p>'));
+        $.each(docs, function(i, item) {
+            $('#results').append($('<div>' + "ID: " + item.id +'</div>'));
+            $('#results').append($('<div>' + "Autor: " + item.Autor + '</div>'));
+            $('#results').append($('<div>' + "Titulo: " + item.Titulo + '</div>'));
+            $('#results').append($('<div>' + "Año: "+ item.Anio + '</div>'));
+            $('#results').append($('<div>' + "URL: "+ item.URL + '</div>'));
+            $('#results').append($('<p>' + " "+item.ISBN + '</p>'));
+        });
+
+        
+        
+    }
+
+    function on_search() {
+        var query = $('#query').val();
+        if (query.length == 0) {
+            return;
+        }
+
+        var url='http://localhost:8983/solr/Index/select?q='+query+'&start=0&rows=10000&indent=on&wt=json&callback=?&json.wrf=on_data';
+        $.getJSON(url);
+    }
+
+    function on_ready() {
+        $('#search').click(on_search);
+        /* Hook enter to search */
+        $('body').keypress(function(e) {
+            if (e.keyCode == '13') {
+                on_search();
+            }
+        });
+    }
+
+    $(document).ready(on_ready);
+</script>
