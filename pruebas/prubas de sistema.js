@@ -8,7 +8,7 @@
 */
 
 
-var supertest = require('./node_modules/supertest');
+var supertest = require('supertest');
 var server = supertest.agent("http://localhost");
 
 describe('Prueba API Webbot', function() {
@@ -157,7 +157,7 @@ describe('Prueba API Webbot', function() {
 		});
 		it('/get/url= Resultado esperado: correcta', function(done) {
 			server
-			.get('/get/url=/')
+			.get('/get/url=eprints/')
 			.set('Accept', 'application/json')
 			.expect(200)
         	.end((err, res) => {
@@ -183,7 +183,7 @@ describe('Prueba API Webbot', function() {
 		});
 		it('/get/isbn= Resultado esperado: correcta', function(done) {
 			server
-			.get('/get/isbn=/')
+			.get('/get/isbn=2/')
 			.set('Accept', 'application/json')
 			.expect(200)
         	.end((err, res) => {
