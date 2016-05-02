@@ -9,7 +9,7 @@
 
 
 var supertest = require('supertest');
-var server = supertest.agent("http://localhost");
+var server = supertest.agent("http://localhost:8000");
 
 describe('Prueba API Webbot', function() {
 		it('/get/id=1 Resultado esperado: correcta', function(done) {

@@ -4,7 +4,6 @@
   "description": "Pruebas de sistemas a la api Webbot",
   "main": "prubas de sistema.js",
   "dependencies": {
-    "mocha": "^2.4.5",
     "supertest": "^1.2.0"
   },
   "devDependencies": {},
