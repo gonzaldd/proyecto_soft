@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">﻿
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title>Webbot</title>
+	</head>
+
+	<body>
+		<!-- Jumbotron Area -->
+		 <div class="jumbotron container" id="jt">
+          <img src="img/unla.png" class="img-responsive" alt="Unla" width="100" height="100">
+  	     	<h1><em>Web Bot de Datos Bibliométricos</em></h1>
+          <br/>
+         
+		  <!-- Tabs area -->
+		    <ul id="myTab" class="nav nav-tabs">
+  			   <li><a data-toggle="tab" id="tabID" href="#todo">All <span class="glyphicon glyphicon-fire"></span></a></li>
+    			 <li><a data-toggle="tab" href="#busquedaId">Search ID </a></li>
+    			 <li><a data-toggle="tab" href="#busquedaAutor">Search Author</a></li>
+    			 <li><a data-toggle="tab" href="#busquedaTitulo">Search Title</a></li>
+    			 <li><a data-toggle="tab" href="#busquedaAnio">Search Year</a></li>
+    			 <li><a data-toggle="tab" href="#busquedaISBN">Search ISBN</a></li>
+    			 <li><a data-toggle="tab" href="#busquedaURL">Search URL</a></li>
+		    </ul>
+		<!-- Tabs area -->
+
+    		<div id="myTabContent" class="tab-content">
+      			<div id="todo" class="tab-pane fade">
+      				<div id="resultadoTodo"></div>
+      			</div>
+
+      			<div id="busquedaId" class="tab-pane fade">
+            <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query" placeholder="Ingrese el ID...">
+                    			<span class="input-group-btn">
+                        			<button id="botonId" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      				<div id="resultadosID"></div>
+      			</div>
+      			
+      			<div id="busquedaAutor" class="tab-pane fade">
+            <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query1" placeholder="Ingrese el Autor...">
+                    			<span class="input-group-btn">
+                        			<button id="botonAutor" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      				</div>
+
+      				<div id="busquedaTitulo" class="tab-pane fade">
+              <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query2" placeholder="Ingrese el Titulo...">
+                    			<span class="input-group-btn">
+                        			<button id="botonTitulo" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      				</div>
+
+      				<div id="busquedaAnio" class="tab-pane fade">
+              <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query3" placeholder="Ingrese el Año...">
+                    			<span class="input-group-btn">
+                        			<button id="botonAnio" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      				</div>
+
+      				<div id="busquedaISBN" class="tab-pane fade">
+              <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query4" placeholder="Ingrese el ISBN...">
+                    			<span class="input-group-btn">
+                        			<button id="botonISBN" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      					<div id="resultadosISBN"></div>
+      				</div>
+
+      				<div id="busquedaURL" class="tab-pane fade">
+              <br><br>
+        			<div class="col-lg-4 col-lg-offset-4">
+        				<div class="input-group" buscar>
+                			<input type="text" class="form-control" id="query5" placeholder="Ingrese la URL...">
+                    			<span class="input-group-btn">
+                        			<button id="botonURL" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-search"></button>
+                    			</span>
+                		</div>
+      				</div>
+      				</div>
+              <div id="resultados"></div>
+			   </div> <!-- div final tabs-->
+      </div> <!-- div final Jumbo -->
+
+
+  <script>
+
+  // **************************************** Events *****************************************************************//
+
+
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) { //Cuando cambio de Tab..
+  			$('#resultadosID').empty();
+        $('#resultados').empty();
+		});
+
+		$('#tabID').on('click',function(e){
+			if( $('#resultadoTodo').is(':empty') ){ //Chequeo si ya cargue los datos //
+        getDataAll().done(parseDataAll);
+      } 
+		});
+
+    $('#botonId').on('click',function(on_search){
+      var query = $('#query').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+        getDataID().done(parseDataID);
+      }
+      
+    });
+
+    $('#botonAutor').on('click',function(on_search){
+      var query = $('#query1').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+        $('#resultados').empty();
+        getDataAuthor().done(parseDataResults);
+      }
+    });
+
+    $('#botonTitulo').on('click',function(on_search){
+      var query = $('#query2').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+      $('#resultados').empty();
+      getDataTitle().done(parseDataResults);
+      }
+    });
+
+    $('#botonAnio').on('click',function(on_search){
+      var query = $('#query3').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+        $('#resultados').empty();
+        getDataYear().done(parseDataResults);
+      }
+    });
+
+    $('#botonISBN').on('click',function(on_search){
+      var query = $('#query4').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+        $('#resultados').empty();
+        getDataISBN().done(parseDataResults);
+      } 
+    });
+
+    $('#botonURL').on('click',function(on_search){
+      var query = $('#query5').val();
+      if(query.length == 0){
+        alert("No ingresó un valor");
+      }else{
+        $('#resultados').empty();
+        getDataURL().done(parseDataResults);
+      }
+    });
+
+  
+    // ***************************************** Parse **************************************************************** //
+
+    function parseDataAll(data){
+      $(data.docs).each(function(index,value){
+                $('#resultadoTodo').append($('<br><br>'));
+                $('#resultadoTodo').append($('<div>' + "ID: " + value.id +'</div>'));
+                $('#resultadoTodo').append($('<div>' + "Autor: " + value.Autor + '</div>'));
+                $('#resultadoTodo').append($('<div>' + "Titulo: " + value.Titulo + '</div>'));
+                $('#resultadoTodo').append($('<div>' + "Año: "+ value.Anio + '</div>'));
+                $('#resultadoTodo').append($('<div>' + "URL: "+ value.URL + '</div>'));
+                $('#resultadoTodo').append($('<p>' + " "+value.ISBN + '</p>'));
+          });
+    }
+
+    function parseDataID(data){
+      $(data.docs).each(function(index,value){
+                $('#resultadosID').empty();
+                $('#resultadosID').append($('<br><br>'));
+                $('#resultadosID').append($('<div>' + "ID: " + value.id +'</div>'));
+                $('#resultadosID').append($('<div>' + "Autor: " + value.Autor + '</div>'));
+                $('#resultadosID').append($('<div>' + "Titulo: " + value.Titulo + '</div>'));
+                $('#resultadosID').append($('<div>' + "Año: "+ value.Anio + '</div>'));
+                $('#resultadosID').append($('<div>' + " "+value.ISBN + '</div>'));
+                $('<iframe />'); //Creo el elemento "iframe"...
+                $('<iframe/>', {
+                        name: 'frame1',
+                        id: 'frame1',
+                        src: value.URL,
+                        width: 500,
+                        height: 500,
+                        align: 'middle'
+                }).appendTo('#resultadosID');
+                    
+          });
+    }
+
+    function parseDataResults(data){
+          $(data.docs).each(function(index,value){
+                $('#resultados').append($('<br><br>'));
+                $('#resultados').append($('<div>' + "ID: " + value.id +'</div>'));
+                $('#resultados').append($('<div>' + "Autor: " + value.Autor + '</div>'));
+                $('#resultados').append($('<div>' + "Titulo: " + value.Titulo + '</div>'));
+                $('#resultados').append($('<div>' + "Año: "+ value.Anio + '</div>'));
+                $('#resultados').append($('<div>' + "URL: "+ value.URL + '</div>'));
+                $('#resultados').append($('<p>' + " "+value.ISBN + '</p>'));
+            });
+    }
+
+
+    // ********************************************* Requests ****************************************************** //
+
+    function getDataAll(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/list/',
+        type: 'GET'
+      });
+    }
+
+    function getDataID(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/id='+$('#query').val()+'/',
+        type: 'GET'
+      });
+    }
+  
+    function getDataAuthor(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/autor='+$('#query1').val()+'/',
+        type: 'GET'
+      });
+    }
+
+    function getDataTitle(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/titulo='+$('#query2').val()+'/',
+        type: 'GET'
+      });
+    }
+
+    function getDataYear(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/anio='+$('#query3').val()+'/',
+        type: 'GET'
+      });
+    }
+
+    function getDataISBN(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/isbn='+$('#query4').val()+'/',
+        type: 'GET'
+      });
+    }
+
+    function getDataURL(){
+      return $.ajax({
+        url: 'http://localhost/webbot/get/url='+$('#query5').val()+'/',
+        type: 'GET'
+      });
+    }
+   
+  </script>
+
+    <footer class="color3">
+        <div class="footer">
+            <div class="col-sm-3 color3">
+                
+            </div>
+            <div class="col-sm-6 color3" align="center">
+                 Proyecto de Software. De Domingo Gonzalo, Guastadisegni Federico, Rodriguez Nahuel.
+            </div>
+            <div class="col-sm-4 color3" align="center">
+               
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+
+
+</html>

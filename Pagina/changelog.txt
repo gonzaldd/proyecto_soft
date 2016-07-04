@@ -1,0 +1,30 @@
+Ver 1.1:
+	- Cambio de nombre "WB".
+	- Se incluyo un "loading gif" en el tab "All".
+	- Se separo el Style en una hoja de estilo css separada.
+	- Se cambio y se centro el input utilizado en las tab de busqueda.
+	- Se agrego la busqueda por "Autor".
+	- Se agrego un glyphicon (search) en la busqueda.
+	- Actualizacion en la tab All. Ahora, funciona al clickearla, y no vuelve a hacer la peticion, a menos que se borren los datos.
+
+	//Evalue la posibilidad de usar iFrame en Autor, pero muchos resultados repercuten en el rendimiento.
+
+Ver 1.2:
+	- Se agregaron las busquedas faltantes.
+
+Ver 1.3:
+
+---
+
+Ver 1.4:
+
+	-Cambio inicial en la busqueda por ID, usando callback con deferred objects (mas eficiente, y es como hay que hacerlo en las versiones nuevas de Jquery.
+
+Ver 1.5:
+
+	- Se agrego deferred object para todos lo request.
+	- Se ordeno el codigo.
+	- Se modifico el tamaño del IFrame de ID, y el orden en que se muestran los datos (ISBN antes del IFrame).
+	- Se agrego una validacion, para el caso en el que no se ingrese ningun valor para la busqueda.
+	- Se agrego un alert para el mismo fin que el punto anterior.
+	

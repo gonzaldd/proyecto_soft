@@ -1,0 +1,77 @@
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+
+#jt { 
+    background-color: #91162e; /* Orange */
+    color: #ffffff;
+    text-align: center;
+}
+.container {
+    background-color: #F0F5F5;
+    padding: 80px 120px;
+}
+.buscar{
+  margin-left:300;
+  margin-right:300;
+}
+.input-group {
+    text-align:center;
+}
+.img-responsive {
+    margin: 0 auto;
+}
+.footfont{
+    color: #646464;
+}
+.footfont:hover{
+    color: #646464;
+}
+
+.footimg{
+    padding-left: 10px;
+    width: 5%;
+}
+
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+
+#resultadoTodo{
+  text-align: center;
+}
+
+#resultadosID{
+  text-align: center;
+}
+
+#resultadosAutor{
+  text-align: center;
+}
+
+#resultadosTitulo{
+  text-align: center;
+}
+
+#resultadosURL{
+  text-align: center;
+}
+
+#resultadosISBN{
+  text-align: center;
+}
+
+#resultadosAnio{
+  text-align: center;
+}
+
+
