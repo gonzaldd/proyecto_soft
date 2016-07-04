@@ -1,4 +1,4 @@
-"""
+﻿"""
 WSGI config for Webbot project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
@@ -11,9 +11,9 @@ import os
 import sys
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/home/federico/proyecto_soft/Webbot')
+sys.path.append('/home/nahuel/proyecto_soft/Webbot')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Webbot.settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "Webbot.settings"
 
 application = get_wsgi_application()
 
