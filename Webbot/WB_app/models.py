@@ -1,17 +1,5 @@
-# -*- encoding: utf-8 -*-
+﻿# -*- encoding: utf-8 -*-
 from django.db import models
-
-class oficina(models.Model):
-	#id_lugar = models.AutoField(primary_key=False)
-	city = models.CharField(max_length=100)
-	province = models.CharField(max_length=100)
-	address = models.CharField(max_length=100)
-	name = models.CharField(max_length=100)
-	def __unicode__(self):
-		return name
-	class Meta:
-		verbose_name = "oficina"
-		verbose_name_plural = "oficina"
 
 class Autor(models.Model):
 	id_autor = models.AutoField(primary_key=True)

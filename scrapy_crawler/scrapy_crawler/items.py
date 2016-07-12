@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*
+﻿# -*- coding: utf-8 -*
 import scrapy
 from scrapy.item import Item, Field
 from scrapy_djangoitem import DjangoItem
-from WB_app.models import Autor,Publicacion,oficina
-
-class OfficeItem(DjangoItem):
-    django_model = oficina
+from WB_app.models import Autor,Publicacion
 
 class PublicacionItem(DjangoItem):
 	django_model = Publicacion

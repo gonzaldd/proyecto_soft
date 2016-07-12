@@ -1,13 +1,11 @@
-#!/bin/bash
+﻿#!/bin/bash
 
+SCRIPTPATH=$(pwd)
+cd ${SCRIPTPATH}/scrapy_crawler
 
-clear
-SCRIPTPATH=`pwd -P`
-cd ${SCRIPTPATH}/scrapy
+PATH=$PATH:/usr/local/bin
+export PATH
+
 scrapy crawl crawler
-echo 'PAGINAS CARGADAS'
-cd ..
-cd ${SCRIPTPATH}/Webbot
-./start.sh
-echo 'SERVIDOR ACTIVADO'
-$SHELL
+
+wget http://localhost:8983/solr/Index/dataimport?command=full-import
