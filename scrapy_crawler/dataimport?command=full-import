@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+<lst name="responseHeader"><int name="status">0</int><int name="QTime">5</int></lst><lst name="initArgs"><lst name="defaults"><str name="config">db-data-config.xml</str></lst></lst><str name="command">full-import</str><str name="status">idle</str><str name="importResponse"/><lst name="statusMessages"><str name="Total Requests made to DataSource">1</str><str name="Total Rows Fetched">0</str><str name="Total Documents Processed">0</str><str name="Total Documents Skipped">0</str><str name="Full Dump Started">2016-07-12 23:21:01</str><str name="">Indexing completed. Added/Updated: 0 documents. Deleted 0 documents.</str><str name="Committed">2016-07-12 23:21:01</str><str name="Time taken">0:0:0.59</str></lst>
+</response>
