@@ -1,0 +1,4 @@
+Para que la página de pruebas funcione correctamente, hay que editar el archivo
+"WB.html" y buscar la línea llamada var url_server = "http://localhost/webbot/".
+Hay que modificar "http://localhost/webbot/" (sólo el texto dentro de las comillas)
+por la ubicación desde donde se sirve el proyecto.
