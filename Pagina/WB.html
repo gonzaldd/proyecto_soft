@@ -240,51 +240,54 @@
 
     // ********************************************* Requests ****************************************************** //
 
+    //** Variable con la ubicación del servidor, debe ponerse el slash (/) al final. **//
+    var url_server = "http://localhost/webbot/"
+
     function getDataAll(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/list/',
+        url: url_server+'get/list/',
         type: 'GET'
       });
     }
 
     function getDataID(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/id='+$('#query').val()+'/',
+        url: url_server+'get/id='+$('#query').val()+'/',
         type: 'GET'
       });
     }
   
     function getDataAuthor(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/autor='+$('#query1').val()+'/',
+        url: url_server+'get/autor='+$('#query1').val()+'/',
         type: 'GET'
       });
     }
 
     function getDataTitle(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/titulo='+$('#query2').val()+'/',
+        url: url_server+'get/titulo='+$('#query2').val()+'/',
         type: 'GET'
       });
     }
 
     function getDataYear(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/anio='+$('#query3').val()+'/',
+        url: url_server+'get/anio='+$('#query3').val()+'/',
         type: 'GET'
       });
     }
 
     function getDataISBN(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/isbn='+$('#query4').val()+'/',
+        url: url_server+'get/isbn='+$('#query4').val()+'/',
         type: 'GET'
       });
     }
 
     function getDataURL(){
       return $.ajax({
-        url: 'http://localhost/webbot/get/url='+$('#query5').val()+'/',
+        url: url_server+'get/url='+$('#query5').val()+'/',
         type: 'GET'
       });
     }
