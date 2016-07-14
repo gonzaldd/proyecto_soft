@@ -10,4 +10,4 @@ scrapy crawl crawler
 
 wait
 
-#wget http://localhost:8983/solr/Index/dataimport?command=full-import
+wget http://localhost:8983/solr/Index/dataimport?command=full-import
