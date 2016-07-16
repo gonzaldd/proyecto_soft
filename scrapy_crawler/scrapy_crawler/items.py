@@ -2,7 +2,7 @@
 import scrapy
 from scrapy.item import Item, Field
 from scrapy_djangoitem import DjangoItem
-from WB_app.models import Autor,Publicacion
+from ps_wdb2015.models import Autor,Publicacion
 
 class PublicacionItem(DjangoItem):
 	django_model = Publicacion

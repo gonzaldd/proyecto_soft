@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WB_app',
+    'ps_wdb2015',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'Webbot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'WB_app',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': 'ps_wdb2015',
+        'USER': 'wdb2015',
+        'PASSWORD': 'ads3fs23f',
         'HOST': 'localhost',
         'PORT': '',
        

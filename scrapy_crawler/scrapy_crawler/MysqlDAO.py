@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
-from WB_app.models import Autor,Publicacion,Link_archivo
+from ps_wdb2015.models import Autor,Publicacion,Link_archivo
 import django
 django.setup()#Sin esto, no anda el Many to many 
 
