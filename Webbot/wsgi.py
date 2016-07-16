@@ -11,7 +11,7 @@ import os
 import sys
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/home/nahuel/proyecto_soft/Webbot')
+sys.path.append('/var/www/ps_wdb2015/Webbot')
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "Webbot.settings"
 
