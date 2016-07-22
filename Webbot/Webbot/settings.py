@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'ps_wdb2015',
         'USER': 'wdb2015',
         'PASSWORD': 'ads3fs23f',
-        'HOST': 'localhost',
+        'HOST': 'laboratorio3.sistemas.unla.edu.ar',
         'PORT': '',
        
     }

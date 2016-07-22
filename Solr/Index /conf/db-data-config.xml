@@ -1,0 +1,26 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource"
+            driver="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://laboratorio3.sistemas.unla.edu.ar/ps_wdb2015"
+            user="wdb2015"
+            password="ads3fs23f" /> 
+  <document>
+
+
+  <entity name="Publicacion" query="select p.id_publicacion as 'id', p.titulo_publicacion as 'Titulo', p.anio_publicacion as 'Anio', p.isbn as 'ISBN' from ps_wdb2015_publicacion p">
+      <field column="id_publicacion" name="id"/>
+     <field column="titulo_publicacion" name="Titulo"/>
+      <field column="anio_publicacion" name="Anio"/>
+     <field column="isbn" name="ISBN"/>
+
+     <entity name="Link" query="select l.url_link as 'URL' from ps_wdb2015_link_archivo l where l.publicacion_id = ${Publicacion.id}">
+         <field column="url_link" name="URL"/>
+    </entity>
+    <entity name="publicacion_autores" query="select ub.autor_id from ps_wdb2015_publicacion_autores ub where ub.publicacion_id='${Publicacion.id}'">
+                <entity name="Autor" query="select a.nombre_comp_autor from ps_wdb2015_autor a where a.id_autor = '${publicacion_autores.autor_id}'">
+                    <field column="nombre_comp_autor" name="Autor" />
+                </entity>
+            </entity>
+  </entity>
+  </document>
+</dataConfig>
