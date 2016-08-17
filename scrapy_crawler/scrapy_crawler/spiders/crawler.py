@@ -125,7 +125,7 @@ class crawler(scrapy.Spider):
 					publicacion = PublicacionItem()
 					publicacion['titulo_publicacion'] = publicaciones[o]
 					publicacion['anio_publicacion'] = (response.xpath("//div[@id='ds-main']/div[@id='ds-content-wrapper']/div[@id='ds-content']/div[@id='ds-body']/div[@id='aspect_discovery_recentSubmissions_RecentSubmissionTransformer_div_main-recent-submissions']/div[@id='aspect_discovery_recentSubmissions_RecentSubmissionTransformer_div_recent-submissions']/ul[@class='ds-artifact-list']/li[@class='ds-artifact-item odd']/div[@class='artifact-description']/div[@class='artifact-info']/span[@class='publisher-date']/span[@class='date']/text()").re(r'\d\d\d\d')[0].strip())
-					publicacion['isbn'] = "Null"
+					publicacion['isbn'] = "ISBN no encontrado"
 					publicacion['nombre_autor'] = autores[o]
 					publicacion['url_link'] = "http://rinfi.fi.mdp.edu.ar"+ links[o]
 					yield publicacion
@@ -239,7 +239,7 @@ class crawler(scrapy.Spider):
 			isxn = publication.xpath('./a/following-sibling::text()').re_first(r'(ISBN\s+\d+|ISSN\s+\d+-\d+)')
 
 			if isxn == None:
-				isxn = "Null"
+				isxn = "ISBN no encontrado"
 			
 			publicacion = PublicacionItem()
 			publicacion['titulo_publicacion'] = pubtitle
@@ -268,7 +268,7 @@ class crawler(scrapy.Spider):
 			isxn = publication.xpath('./a/following-sibling::text()').re_first(r'(ISBN\s+\d+|ISSN\s+\d+-\d+)')
 
 			if isxn == None:
-				isxn = "Null"
+				isxn = "ISBN no encontrado"
 			
 			publicacion = PublicacionItem()
 			publicacion['titulo_publicacion'] = pubtitle
@@ -299,7 +299,7 @@ class crawler(scrapy.Spider):
 			isxn = publication.xpath('./a/following-sibling::text()').re_first(r'(ISBN\s+\d+|ISSN\s+\d+-\d+)')
 			#IF para verificar si existe o no el ISBN. Sin este if, en la base se guarda un NULL (no un string que diga "null") por lo que solr no lo importa.
 			if isxn == None:
-				isxn = "Null"
+				isxn = "ISBN no encontrado"
 			
 			publicacion = PublicacionItem()
 			publicacion['titulo_publicacion'] = pubtitle
@@ -319,7 +319,7 @@ class crawler(scrapy.Spider):
 
 			publicacion = PublicacionItem()
 			publicacion['titulo_publicacion'] = title
-			publicacion['anio_publicacion'] = "Null"
+			publicacion['anio_publicacion'] = "Anio no encontrado"
 			publicacion['isbn'] = issn
 			publicacion['nombre_autor'] = author
 			publicacion['url_link'] = response.url
@@ -337,7 +337,7 @@ class crawler(scrapy.Spider):
 			anio = publication.xpath('./td/text()').re_first(r'\((\d+)\)')
 
 			if issn == None:
-				issn = "Null"
+				issn = "ISSN no encontrado"
 
 			publicacion = PublicacionItem()
 			publicacion['titulo_publicacion'] = title
@@ -359,7 +359,7 @@ class crawler(scrapy.Spider):
 
 
 			if doi == None:
-				doi = "Null"
+				doi = "DOI no encontrado"
 			else:
 				doi = doi[4:]
 
