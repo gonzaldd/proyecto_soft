@@ -27,7 +27,7 @@ def get_list(request):
 def get_autor(request,nombre):
     print nombre
     try:
-        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/select?q=Autor:"'+urllib.quote(nombre)+'"&wt=json&rows=10000'
+        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/select?q=Autor:('+urllib.quote(nombre)+')&wt=json&rows=10000'
         conn = urlopen(url)
         rsp = eval( conn.read() )
 
@@ -38,7 +38,7 @@ def get_autor(request,nombre):
 def get_titulo(request,titulo):
     print titulo
     try:
-        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/select?q=Titulo:"'+urllib.quote(titulo)+'"&wt=json&rows=10000'
+        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/select?q=Titulo:('+urllib.quote(titulo)+')&wt=json&rows=10000'
         conn = urlopen(url)
         rsp = eval( conn.read() )
 
