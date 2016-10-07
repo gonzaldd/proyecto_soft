@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^get/titulo=(?P<titulo>.+?)/$',get_titulo,name='GET_bytitulo'),
     url(r'^get/url=(?P<uu>.+?)/$',get_url,name='GET_byurl'),
     url(r'^get/isbn=(?P<isbn>.+?)/$',get_isbn,name='GET_byisbn'),
-    url(r'^get/anio=(?P<anio>.+?)/$',get_anio,name='GET_byanio')
+    url(r'^get/anio=(?P<anio>.+?)/$',get_anio,name='GET_byanio'),
+    url(r'^get/indexar/',get_indexar,name='GET_indexar'),
+    url(r'^get/desindexar/',get_desindexar,name='GET_desindexar')
 ]

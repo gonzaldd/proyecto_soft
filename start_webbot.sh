@@ -9,10 +9,10 @@ cd ${SCRIPTPATH}/scrapy_crawler
 PATH=$PATH:/usr/local/bin
 export PATH
 
-wget 'laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/update?stream.body=<delete><query>*:*</query></delete>&commit=true'
+wget 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/update?stream.body=<delete><query>*:*</query></delete>&commit=true'
 
 scrapy crawl crawler
 
 wait
 
-wget laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/dataimport?command=full-import
+wget http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/dataimport?command=full-import

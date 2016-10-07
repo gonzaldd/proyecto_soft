@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.http import HttpResponse
 from urllib2 import *
 import urllib
+import requests
 
 
 def get_id(request,id_solicitud):
@@ -14,7 +15,7 @@ def get_id(request,id_solicitud):
         print "number of matches=", rsp['response']['numFound']
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por id.'})
 
 def get_list(request):
     try:
@@ -22,7 +23,7 @@ def get_list(request):
         rsp = eval( conn.read() )
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer todo.'})
 
 def get_autor(request,nombre):
     print nombre
@@ -33,7 +34,7 @@ def get_autor(request,nombre):
 
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por autor.'})
 
 def get_titulo(request,titulo):
     print titulo
@@ -44,7 +45,7 @@ def get_titulo(request,titulo):
 
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por titulo.'})
 
 def get_url(request,uu):
     print uu
@@ -55,7 +56,7 @@ def get_url(request,uu):
 
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por url.'})
 
 def get_isbn(request,isbn):
     print isbn
@@ -66,7 +67,7 @@ def get_isbn(request,isbn):
 
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por isbn.'})
 
 def get_anio(request,anio):
     print anio
@@ -77,4 +78,22 @@ def get_anio(request,anio):
 
         return JsonResponse(rsp['response'])
     except:
-        return JsonResponse({})
+        return JsonResponse({'Estado : ':'Error al traer por anio.'})
+
+def get_indexar(request):
+    try:
+        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/dataimport?command=full-import'
+        result = requests.get(url)
+        if(result.status_code == 200):
+            return JsonResponse({'Estado : ':'Indexado OK.'})
+    except:
+        return JsonResponse({'Estado': 'Error en el indexado.'})
+
+def get_desindexar(request):
+    try:
+        url = 'http://laboratorio3.sistemas.unla.edu.ar:8983/solr/Index/update?stream.body=<delete><query>*:*</query></delete>&commit=true'
+        result = requests.get(url)
+        if(result.status_code == 200):
+            return JsonResponse({'Estado : ':'Desindexado OK.'})
+    except:
+        return JsonResponse({'Estado : ':'Error en el desindexado.'})
